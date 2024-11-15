@@ -1,3 +1,9 @@
+/**
+ * @author Xavier Khew &lt;xavier.khew.dev@gmail.com>
+ * @file Main file running the api
+ * @version 0.0.1
+ */
+
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
@@ -10,6 +16,20 @@ const mongo_uri = process.env.MONGO_URI
 const app = express()
 
 app.use(cors())
+
+// global middleware and path logging
+app.use(express.json())
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.protocol}://${req.get('host')}${req.originalUrl}`);
+  next();
+})
+
+
+app.get('/help', (req, res) => {
+  res.status(418).json({ message: 'help' });
+  console.log('help me');
+
+});
 
 
 // connection function
