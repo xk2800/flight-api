@@ -31,6 +31,8 @@ app.get('/help', (req, res) => {
 
 });
 
+app.use('api/')
+
 
 // connection function
 const connectToDB = async () => {
